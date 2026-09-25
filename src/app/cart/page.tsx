@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import { formatPrice } from "@/lib/products";
@@ -40,17 +41,21 @@ export default function CartPage() {
                 transition={{ delay: i * 0.05 }}
                 className="bg-white rounded-2xl p-5 border border-border/50 flex gap-5"
               >
-                <div className="w-24 h-24 rounded-xl bg-surface flex items-center justify-center shrink-0">
-                  <span className="text-4xl">
-                    {item.product.category === "brakes" && "🛑"}
-                    {item.product.category === "engine" && "⚙️"}
-                    {item.product.category === "electrical" && "⚡"}
-                    {item.product.category === "suspension" && "🏎️"}
-                    {item.product.category === "body" && "🚗"}
-                    {item.product.category === "exhaust" && "💨"}
-                    {item.product.category === "accessories" && "✨"}
-                    {item.product.category === "tools" && "🔧"}
-                  </span>
+                <div className="w-24 h-24 rounded-xl bg-surface flex items-center justify-center shrink-0 relative overflow-hidden">
+                  {item.product.images?.[0] ? (
+                    <Image src={item.product.images[0]} alt={item.product.name} fill className="object-contain p-2" sizes="96px" />
+                  ) : (
+                    <span className="text-4xl">
+                      {item.product.category === "brakes" && "🛑"}
+                      {item.product.category === "engine" && "⚙️"}
+                      {item.product.category === "electrical" && "⚡"}
+                      {item.product.category === "suspension" && "🏎️"}
+                      {item.product.category === "body" && "🚗"}
+                      {item.product.category === "exhaust" && "💨"}
+                      {item.product.category === "accessories" && "✨"}
+                      {item.product.category === "tools" && "🔧"}
+                    </span>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-4">

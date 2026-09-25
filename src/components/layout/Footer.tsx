@@ -5,20 +5,40 @@ import { Package, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 
 const footerLinks = {
   "Shop by Vehicle": [
-    "Maruti Suzuki", "Hyundai", "Tata Motors", "Mahindra",
-    "Honda", "Toyota", "Kia", "MG Motor",
+    { label: "Maruti Suzuki", href: "/vehicles/maruti-suzuki" },
+    { label: "Hyundai", href: "/vehicles/hyundai" },
+    { label: "Tata Motors", href: "/vehicles/tata-motors" },
+    { label: "Mahindra", href: "/vehicles/mahindra" },
+    { label: "Honda", href: "/vehicles/honda" },
+    { label: "Toyota", href: "/vehicles/toyota" },
+    { label: "Kia", href: "/vehicles/kia" },
+    { label: "MG Motor", href: "/vehicles/mg-motor" },
   ],
   "Popular Categories": [
-    "Engine Parts", "Brake System", "Suspension", "Electrical",
-    "Body Parts", "Exhaust", "Accessories", "Tools",
+    { label: "Engine Parts", href: "/products?category=engine" },
+    { label: "Brake System", href: "/products?category=brakes" },
+    { label: "Suspension", href: "/products?category=suspension" },
+    { label: "Electrical", href: "/products?category=electrical" },
+    { label: "Body Parts", href: "/products?category=body" },
+    { label: "Exhaust", href: "/products?category=exhaust" },
+    { label: "Accessories", href: "/products?category=accessories" },
+    { label: "Tools", href: "/products?category=tools" },
   ],
   "Customer Service": [
-    "Track Order", "Returns & Refunds", "Warranty Policy",
-    "Shipping Info", "Contact Us", "FAQs",
+    { label: "Track Order", href: "/track-order" },
+    { label: "Returns & Refunds", href: "/returns-refunds" },
+    { label: "Warranty Policy", href: "/warranty-policy" },
+    { label: "Shipping Info", href: "/shipping-info" },
+    { label: "Contact Us", href: "/contact" },
+    { label: "FAQs", href: "/faqs" },
   ],
   "Company": [
-    "About Us", "Careers", "Blog", "Press",
-    "Sell on AutoParts", "Affiliate Program",
+    { label: "About Us", href: "/about-us" },
+    { label: "Careers", href: "/careers" },
+    { label: "Blog", href: "/blog" },
+    { label: "Press", href: "/press" },
+    { label: "Sell on AutoParts", href: "/sell-on-autoparts" },
+    { label: "Affiliate Program", href: "/affiliate-program" },
   ],
 };
 
@@ -56,9 +76,9 @@ export default function Footer() {
               <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">{title}</h4>
               <ul className="space-y-2.5">
                 {links.map((link) => (
-                  <li key={link}>
-                    <Link href="#" className="text-sm text-white/50 hover:text-primary transition-colors">
-                      {link}
+                  <li key={link.label}>
+                    <Link href={link.href} className="text-sm text-white/50 hover:text-primary transition-colors">
+                      {link.label}
                     </Link>
                   </li>
                 ))}

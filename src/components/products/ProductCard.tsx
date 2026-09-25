@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Star, ShoppingCart, Heart, Eye } from "lucide-react";
 import { Product } from "@/types";
 import { formatPrice, getDiscount } from "@/lib/products";
 import { useCartStore } from "@/store/cartStore";
+import { useWishlistStore } from "@/store/wishlistStore";
 
 interface ProductCardProps {
   product: Product;
@@ -14,6 +16,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, index = 0 }: ProductCardProps) {
   const addItem = useCartStore((s) => s.addItem);
+  const { toggleItem, hasItem } = useWishlistStore();
+  const isInWishlist = hasItem(product.id);
   const discount = getDiscount(product.price, product.originalPrice);
 
   const badgeColors: Record<string, string> = {
@@ -34,6 +38,8 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     tools: "from-cyan-400 to-sky-500",
   };
 
+  const primaryImage = product.images?.[0];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -48,18 +54,28 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Product Visual */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-            <span className="text-4xl">
-              {product.category === "brakes" && "🛑"}
-              {product.category === "engine" && "⚙️"}
-              {product.category === "electrical" && "⚡"}
-              {product.category === "suspension" && "🏎️"}
-              {product.category === "body" && "🚗"}
-              {product.category === "exhaust" && "💨"}
-              {product.category === "accessories" && "✨"}
-              {product.category === "tools" && "🔧"}
-            </span>
-          </div>
+          {primaryImage ? (
+            <Image
+              src={primaryImage}
+              alt={product.name}
+              fill
+              className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            />
+          ) : (
+            <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+              <span className="text-4xl">
+                {product.category === "brakes" && "🛑"}
+                {product.category === "engine" && "⚙️"}
+                {product.category === "electrical" && "⚡"}
+                {product.category === "suspension" && "🏎️"}
+                {product.category === "body" && "🚗"}
+                {product.category === "exhaust" && "💨"}
+                {product.category === "accessories" && "✨"}
+                {product.category === "tools" && "🔧"}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Badge */}
@@ -88,8 +104,16 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             <ShoppingCart size={15} />
             Add to Cart
           </button>
-          <button className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-white transition-colors shadow-lg">
-            <Heart size={16} />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              toggleItem(product);
+            }}
+            className={`w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-white transition-colors shadow-lg ${
+              isInWishlist ? "text-red-500" : ""
+            }`}
+          >
+            <Heart size={16} className={isInWishlist ? "fill-current" : ""} />
           </button>
           <Link
             href={`/product/${product.id}`}

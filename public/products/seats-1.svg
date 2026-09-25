@@ -1,0 +1,51 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leatherGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a1a0a"/>
+      <stop offset="50%" style="stop-color:#1a0d05"/>
+      <stop offset="100%" style="stop-color:#0d0803"/>
+    </linearGradient>
+    <linearGradient id="stitchGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#b8860b"/>
+    </linearGradient>
+    <linearGradient id="foamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f5f5"/>
+      <stop offset="100%" style="stop-color:#e0e0e0"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b0000"/>
+      <stop offset="100%" style="stop-color:#4a0000"/>
+    </linearGradient>
+    <filter id="seatShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="#f5f5f0"/>
+  <g filter="url(#seatShadow)">
+    <!-- Seat base -->
+    <path d="M80,200 Q70,190 70,170 L70,100 Q70,70 100,50 Q130,30 170,50 Q200,70 200,100 L200,170 Q200,190 190,200 L190,300 Q190,330 160,350 Q130,370 100,350 Q70,350 70,300 L70,200 Z" fill="url(#leatherGrad)" stroke="#0a0502" stroke-width="1"/>
+    <!-- Side bolster -->
+    <path d="M70,100 Q60,80 60,60 L60,170 Q60,190 80,200 L100,190 Q120,200 120,170 L120,60 Q100,40 140,60 Z" fill="url(#leatherGrad)" stroke="#0a0502" stroke-width="0.5"/>
+    <path d="M330,100 Q340,80 340,60 L340,170 Q340,190 320,180 L300,180 Q280,200 280,170 L280,60 Q260,40 220,60 Z" fill="url(#leatherGrad)" stroke="#0a0502" stroke-width="0.5"/>
+    <!-- Red piping/stitching -->
+    <path d="M80,200 Q70,190 70,170 L70,100 Q70,70 100,50 Q130,30 170,50 Q200,70 200,100 L200,170 Q200,190 190,200 L190,300 Q190,330 160,350 Q130,370 100,350 Q70,350 70,300 L70,200" fill="none" stroke="url(#redGrad)" stroke-width="3" opacity="0.7"/>
+    <!-- Diamond quilting pattern -->
+    <g fill="none" stroke="#b8860b" stroke-width="0.5" opacity="0.5">
+      <path d="M120,130 Q130,120 140,130 Q150,120 160,130 Q170,120 180,130"/>
+      <path d="M120,160 Q130,150 140,160 Q150,150 160,160 Q170,150 180,160"/>
+      <path d="M120,190 Q130,180 140,190 Q150,180 160,190 Q170,180 180,190"/>
+      <path d="M120,220 Q130,210 140,220 Q150,210 160,220 Q170,210 180,220"/>
+      <path d="M120,250 Q130,240 140,250 Q150,240 160,250 Q170,240 180,250"/>
+      <path d="M120,280 Q130,270 140,280 Q150,270 160,280 Q170,270 180,280"/>
+    </g>
+    <!-- Headrest -->
+    <path d="M140,40 Q140,20 160,10 Q180,10 180,40 L180,100 Q180,110 160,110 Q140,110 140,80 Z" fill="url(#leatherGrad)" stroke="#0a0502" stroke-width="1"/>
+    <!-- Side bolsters red accent -->
+    <ellipse cx="200" cy="180" rx="80" ry="20" fill="none" stroke="url(#redGrad)" stroke-width="4" opacity="0.5"/>
+  </g>
+  <!-- Brand & specs -->
+  <text x="200" y="370" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#1a0d05">AUTOZONE</text>
+  <text x="200" y="355" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#666">Premium Leather Seat Cover Set</text>
+  <text x="200" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#888">Black/Red • Nappa Leather • Memory Foam</text>
+</svg>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Star,
   ShoppingCart,
@@ -15,7 +16,6 @@ import {
   Minus,
   Plus,
   ChevronRight,
-  MessageCircle,
   ThumbsUp,
 } from "lucide-react";
 import { getProductById, formatPrice, getDiscount, products } from "@/lib/products";
@@ -63,18 +63,29 @@ export default function ProductDetailPage() {
             <div className="aspect-square rounded-3xl bg-white border border-border/50 overflow-hidden flex items-center justify-center relative">
               <div className="absolute inset-0 hero-pattern opacity-30" />
               <div className="relative">
-                <div className="w-48 h-48 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <span className="text-8xl">
-                    {product.category === "brakes" && "🛑"}
-                    {product.category === "engine" && "⚙️"}
-                    {product.category === "electrical" && "⚡"}
-                    {product.category === "suspension" && "🏎️"}
-                    {product.category === "body" && "🚗"}
-                    {product.category === "exhaust" && "💨"}
-                    {product.category === "accessories" && "✨"}
-                    {product.category === "tools" && "🔧"}
-                  </span>
-                </div>
+                {product.images?.[0] ? (
+                  <Image
+                    src={product.images[0]}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-8"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <div className="w-48 h-48 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                    <span className="text-8xl">
+                      {product.category === "brakes" && "🛑"}
+                      {product.category === "engine" && "⚙️"}
+                      {product.category === "electrical" && "⚡"}
+                      {product.category === "suspension" && "🏎️"}
+                      {product.category === "body" && "🚗"}
+                      {product.category === "exhaust" && "💨"}
+                      {product.category === "accessories" && "✨"}
+                      {product.category === "tools" && "🔧"}
+                    </span>
+                  </div>
+                )}
               </div>
               {discount > 0 && (
                 <span className="absolute top-6 left-6 px-3 py-1.5 rounded-xl bg-red-500 text-white text-sm font-bold">
@@ -90,22 +101,34 @@ export default function ProductDetailPage() {
 
             {/* Thumbnail row */}
             <div className="flex gap-3 mt-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className={`w-20 h-20 rounded-xl border-2 flex items-center justify-center cursor-pointer transition-all ${
-                  i === 1 ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/50"
-                }`}>
-                  <span className="text-2xl">
-                    {product.category === "brakes" && "🛑"}
-                    {product.category === "engine" && "⚙️"}
-                    {product.category === "electrical" && "⚡"}
-                    {product.category === "suspension" && "🏎️"}
-                    {product.category === "body" && "🚗"}
-                    {product.category === "exhaust" && "💨"}
-                    {product.category === "accessories" && "✨"}
-                    {product.category === "tools" && "🔧"}
-                  </span>
+              {product.images?.map((img, i) => (
+                <div
+                  key={i}
+                  className={`w-20 h-20 rounded-xl border-2 flex items-center justify-center cursor-pointer transition-all ${
+                    i === 0 ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/50"
+                  }`}
+                >
+                  <Image src={img} alt={`${product.name} view ${i + 1}`} fill className="object-cover rounded-lg" sizes="80px" />
                 </div>
               ))}
+              {(!product.images || product.images.length === 0) && (
+                [1, 2, 3, 4].map((i) => (
+                  <div key={i} className={`w-20 h-20 rounded-xl border-2 flex items-center justify-center cursor-pointer transition-all ${
+                    i === 1 ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/50"
+                  }`}>
+                    <span className="text-2xl">
+                      {product.category === "brakes" && "🛑"}
+                      {product.category === "engine" && "⚙️"}
+                      {product.category === "electrical" && "⚡"}
+                      {product.category === "suspension" && "🏎️"}
+                      {product.category === "body" && "🚗"}
+                      {product.category === "exhaust" && "💨"}
+                      {product.category === "accessories" && "✨"}
+                      {product.category === "tools" && "🔧"}
+                    </span>
+                  </div>
+                ))
+              )}
             </div>
           </motion.div>
 

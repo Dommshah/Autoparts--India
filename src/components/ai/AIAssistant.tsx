@@ -46,23 +46,17 @@ function getAIResponse(query: string): string {
 
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
+    {
+      id: "1",
+      role: "assistant",
+      content: AI_RESPONSES.greeting,
+      timestamp: new Date(0),
+    },
+  ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setMessages([
-      {
-        id: "1",
-        role: "assistant",
-        content: AI_RESPONSES.greeting,
-        timestamp: new Date(),
-      },
-    ]);
-  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -96,8 +90,6 @@ export default function AIAssistant() {
       setIsTyping(false);
     }, 1200);
   };
-
-  if (!mounted) return null;
 
   return (
     <>

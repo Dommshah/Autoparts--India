@@ -25,8 +25,9 @@ const sortOptions = [
 function ProductsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "";
+  const initialSearch = searchParams.get("q") || "";
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedPriceRange, setSelectedPriceRange] = useState<number | null>(null);

@@ -1,0 +1,50 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tubeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a5c"/>
+      <stop offset="50%" style="stop-color:#1e5a8a"/>
+      <stop offset="100%" style="stop-color:#2a7ab8"/>
+    </linearGradient>
+    <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0e0e0"/>
+      <stop offset="50%" style="stop-color:#fff"/>
+      <stop offset="100%" style="stop-color:#ccc"/>
+    </linearGradient>
+    <linearGradient id="springGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f0f0"/>
+      <stop offset="100%" style="stop-color:#d0d0d0"/>
+    </linearGradient>
+    <filter id="shockShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="#f5f5f0"/>
+  <g filter="url(#shockShadow)">
+    <!-- Outer tube -->
+    <rect x="170" y="50" width="60" height="300" rx="8" fill="url(#tubeGrad)" stroke="#0d2a3a" stroke-width="1"/>
+    <rect x="175" y="55" width="50" height="290" rx="5" fill="#0f253a"/>
+    <!-- Inner rod (chrome) -->
+    <rect x="190" y="30" width="20" height="280" rx="5" fill="url(#chromeGrad)" stroke="#aaa" stroke-width="0.5"/>
+    <!-- Spring -->
+    <g stroke="url(#springGrad)" stroke-width="4" fill="none" stroke-linecap="round">
+      <path d="M190,310 Q180,300 190,290 Q200,280 190,270 Q180,260 190,250 Q200,240 190,230 Q180,220 190,210 Q200,200 190,190 Q180,180 190,170 Q200,160 190,150 Q180,140 190,130" stroke-linecap="round"/>
+    </g>
+    <!-- Top mount -->
+    <rect x="150" y="20" width="100" height="20" rx="4" fill="#333" stroke="#222" stroke-width="1"/>
+    <rect x="180" y="15" width="40" height="15" rx="3" fill="#444" stroke="#333" stroke-width="0.5"/>
+    <circle cx="180" cy="25" r="6" fill="#555" stroke="#333" stroke-width="1"/>
+    <circle cx="220" cy="25" r="6" fill="#555" stroke="#333" stroke-width="1"/>
+    <!-- Bottom mount -->
+    <rect x="150" y="350" width="100" height="20" rx="4" fill="#333" stroke="#222" stroke-width="1"/>
+    <circle cx="180" cy="360" r="8" fill="#555" stroke="#333" stroke-width="1"/>
+    <circle cx="220" cy="360" r="8" fill="#555" stroke="#333" stroke-width="1"/>
+    <!-- Dust boot -->
+    <path d="M165,110 Q165,100 170,95 Q175,90 180,90 Q185,90 190,95 Q195,100 195,110" fill="#222" stroke="#111" stroke-width="1"/>
+    <!-- Piston -->
+    <rect x="185" y="200" width="30" height="15" rx="3" fill="#444" stroke="#333" stroke-width="0.5"/>
+  </g>
+  <!-- Brand & specs -->
+  <text x="200" y="370" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#1a3a5c">BILSTEIN</text>
+  <text x="200" y="355" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#666">Monotube Shock Absorber</text>
+  <text x="200" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#888">Rear Pair • 450mm • Gas Charged</text>
+</svg>

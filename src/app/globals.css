@@ -20,6 +20,26 @@
   --glow-card: 0 4px 40px rgba(0, 0, 0, 0.08);
 }
 
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --primary: #fb923c;
+  --primary-dark: #f97316;
+  --secondary: #f8fafc;
+  --accent: #fbbf24;
+  --surface: #1e293b;
+  --surface-dark: #0f172a;
+  --muted: #94a3b8;
+  --border: #334155;
+  --success: #34d399;
+  --danger: #f87171;
+  --gradient-primary: linear-gradient(135deg, #fb923c, #f97316, #ea580c);
+  --gradient-dark: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  --gradient-hero: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #020617 100%);
+  --glow-primary: 0 0 40px rgba(251, 146, 60, 0.4);
+  --glow-card: 0 4px 40px rgba(0, 0, 0, 0.3);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -159,11 +179,23 @@ body {
     radial-gradient(at 82% 65%, rgba(245, 158, 11, 0.1) 0, transparent 55%);
 }
 
+.dark .hero-pattern {
+  background-image: 
+    radial-gradient(at 47% 33%, rgba(251, 146, 60, 0.2) 0, transparent 59%),
+    radial-gradient(at 82% 65%, rgba(251, 191, 36, 0.15) 0, transparent 55%);
+}
+
 .grid-pattern {
   background-image: 
     linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+.dark .grid-pattern {
+  background-image: 
+    linear-gradient(rgba(251, 146, 60, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 146, 60, 0.04) 1px, transparent 1px);
 }
 
 .noise-overlay::before {

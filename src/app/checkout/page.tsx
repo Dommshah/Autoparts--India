@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   CreditCard,
   Truck,
   Shield,
-  ChevronRight,
   Check,
   MapPin,
   Package,
@@ -31,6 +31,7 @@ export default function CheckoutPage() {
   const { items, getTotal, getGST, getGrandTotal, clearCart } = useCartStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderId, setOrderId] = useState("");
   const [form, setForm] = useState({
     name: "", email: "", phone: "",
     address: "", city: "", state: "", pincode: "",
@@ -71,7 +72,7 @@ export default function CheckoutPage() {
             <Check size={40} className="text-green-600" />
           </motion.div>
           <h2 className="text-3xl font-bold mb-3">Order Placed!</h2>
-          <p className="text-muted mb-2">Order #AP-{Math.random().toString(36).substr(2, 8).toUpperCase()}</p>
+          <p className="text-muted mb-2">Order #AP-{orderId}</p>
           <p className="text-sm text-muted mb-8">
             Thank you for your order. You will receive a confirmation email and SMS shortly.
             Track your order from the dashboard.
@@ -172,17 +173,21 @@ export default function CheckoutPage() {
                 <div className="space-y-3">
                   {items.map((item) => (
                     <div key={item.product.id} className="flex items-center gap-4 p-4 rounded-xl bg-surface">
-                      <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shrink-0">
-                        <span className="text-2xl">
-                          {item.product.category === "brakes" && "🛑"}
-                          {item.product.category === "engine" && "⚙️"}
-                          {item.product.category === "electrical" && "⚡"}
-                          {item.product.category === "suspension" && "🏎️"}
-                          {item.product.category === "body" && "🚗"}
-                          {item.product.category === "exhaust" && "💨"}
-                          {item.product.category === "accessories" && "✨"}
-                          {item.product.category === "tools" && "🔧"}
-                        </span>
+                      <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center shrink-0 relative overflow-hidden">
+                        {item.product.images?.[0] ? (
+                          <Image src={item.product.images[0]} alt={item.product.name} fill className="object-contain p-1" sizes="56px" />
+                        ) : (
+                          <span className="text-2xl">
+                            {item.product.category === "brakes" && "🛑"}
+                            {item.product.category === "engine" && "⚙️"}
+                            {item.product.category === "electrical" && "⚡"}
+                            {item.product.category === "suspension" && "🏎️"}
+                            {item.product.category === "body" && "🚗"}
+                            {item.product.category === "exhaust" && "💨"}
+                            {item.product.category === "accessories" && "✨"}
+                            {item.product.category === "tools" && "🔧"}
+                          </span>
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="font-semibold text-sm line-clamp-1">{item.product.name}</h4>
@@ -201,7 +206,11 @@ export default function CheckoutPage() {
                   <button onClick={() => setCurrentStep(1)} className="px-6 py-3.5 rounded-xl border border-border font-semibold text-sm hover:bg-surface transition-colors">
                     Back
                   </button>
-                  <button onClick={() => { setOrderPlaced(true); clearCart(); }} className="flex-1 py-3.5 rounded-xl gradient-primary text-white font-semibold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2">
+                  <button onClick={() => {
+                    setOrderId(crypto.randomUUID().replace(/-/g, "").slice(0, 8).toUpperCase());
+                    setOrderPlaced(true);
+                    clearCart();
+                  }} className="flex-1 py-3.5 rounded-xl gradient-primary text-white font-semibold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2">
                     <IndianRupee size={16} /> Place Order — {formatPrice(getGrandTotal())}
                   </button>
                 </div>

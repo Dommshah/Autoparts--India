@@ -11,18 +11,20 @@ import {
   X,
   MapPin,
   Phone,
-  ChevronDown,
   Package,
   Heart,
   Bell,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import { categories } from "@/lib/products";
+import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
 
 const topBarLinks = [
-  { label: "Track Order", href: "#" },
-  { label: "Sell on AutoParts", href: "#" },
-  { label: "Help & Support", href: "#" },
+  { label: "Track Order", href: "/track-order" },
+  { label: "Sell on AutoParts", href: "/sell-on-autoparts" },
+  { label: "Help & Support", href: "/contact" },
 ];
 
 export default function Header() {
@@ -30,7 +32,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const { toggleCart, getTotalItems } = useCartStore();
+  const { toggleCart } = useCartStore();
   const totalItems = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
 
   useEffect(() => {
@@ -92,46 +94,50 @@ export default function Header() {
 
             {/* Search Bar */}
             <div className="hidden md:flex flex-1 max-w-2xl mx-8">
-              <div
-                className={`relative w-full transition-all duration-300 ${
-                  searchFocused ? "scale-[1.02]" : ""
-                }`}
-              >
+              <form action="/products" method="GET" className="w-full">
                 <div
-                  className={`flex items-center rounded-2xl overflow-hidden transition-all duration-300 ${
-                    searchFocused
-                      ? "ring-2 ring-primary shadow-lg"
-                      : "ring-1 ring-border"
+                  className={`relative w-full transition-all duration-300 ${
+                    searchFocused ? "scale-[1.02]" : ""
                   }`}
                 >
-                  <select
-                    className={`px-4 py-3 text-sm font-medium border-r outline-none cursor-pointer ${
-                      isScrolled
-                        ? "bg-white/10 text-white border-white/20"
-                        : "bg-surface text-foreground border-border"
+                  <div
+                    className={`flex items-center rounded-2xl overflow-hidden transition-all duration-300 ${
+                      searchFocused
+                        ? "ring-2 ring-primary shadow-lg"
+                        : "ring-1 ring-border"
                     }`}
                   >
-                    <option>All Categories</option>
-                    {categories.map((c) => (
-                      <option key={c.id}>{c.name}</option>
-                    ))}
-                  </select>
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setSearchFocused(true)}
-                    onBlur={() => setSearchFocused(false)}
-                    placeholder="Search for brake pads, engine oil, LED headlights..."
-                    className={`flex-1 px-4 py-3 text-sm outline-none bg-transparent ${
-                      isScrolled ? "text-white placeholder:text-white/40" : "text-foreground placeholder:text-muted"
-                    }`}
-                  />
-                  <button className="px-6 py-3 gradient-primary text-white hover:opacity-90 transition-opacity">
-                    <Search size={18} />
-                  </button>
+                    <select
+                      name="category"
+                      className={`px-4 py-3 text-sm font-medium border-r outline-none cursor-pointer ${
+                        isScrolled
+                          ? "bg-white/10 text-white border-white/20"
+                          : "bg-surface text-foreground border-border"
+                      }`}
+                    >
+                      <option value="">All Categories</option>
+                      {categories.map((c) => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </select>
+                    <input
+                      type="text"
+                      name="q"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onFocus={() => setSearchFocused(true)}
+                      onBlur={() => setSearchFocused(false)}
+                      placeholder="Search for brake pads, engine oil, LED headlights..."
+                      className={`flex-1 px-4 py-3 text-sm outline-none bg-transparent ${
+                        isScrolled ? "text-white placeholder:text-white/40" : "text-foreground placeholder:text-muted"
+                      }`}
+                    />
+                    <button type="submit" className="px-6 py-3 gradient-primary text-white hover:opacity-90 transition-opacity">
+                      <Search size={18} />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
 
             {/* Right Actions */}
@@ -174,6 +180,8 @@ export default function Header() {
                   </motion.span>
                 )}
               </button>
+
+              <ThemeSwitcher />
 
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

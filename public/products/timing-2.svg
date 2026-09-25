@@ -1,0 +1,79 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="beltGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a3a3a"/>
+      <stop offset="50%" style="stop-color:#222"/>
+      <stop offset="100%" style="stop-color:#111"/>
+    </linearGradient>
+    <linearGradient id="metalGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8a8a8"/>
+      <stop offset="100%" style="stop-color:#787878"/>
+    </linearGradient>
+    <linearGradient id="waterPumpGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#90c0d8"/>
+      <stop offset="50%" style="stop-color:#58a0c8"/>
+      <stop offset="100%" style="stop-color:#3880b8"/>
+    </linearGradient>
+    <filter id="kitShadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="#f5f5f0"/>
+  <g filter="url(#kitShadow2)">
+    <path d="M120,120 Q120,100 140,90 Q160,80 200,80 Q240,80 260,90 Q280,100 280,120 L280,250 Q280,270 260,280 Q220,290 180,290 Q140,290 120,270 Q120,250 120,250 Z" fill="url(#beltGrad2)" stroke="#000" stroke-width="2"/>
+    <g stroke="#111" stroke-width="1.5" opacity="0.7">
+      <line x1="130" y1="125" x2="150" y2="115"/>
+      <line x1="160" y1="110" x2="180" y2="105"/>
+      <line x1="200" y1="105" x2="220" y2="105"/>
+      <line x1="240" y1="110" x2="260" y2="115"/>
+      <line x1="270" y1="130" x2="275" y2="150"/>
+      <line x1="275" y1="180" x2="270" y2="200"/>
+      <line x1="260" y1="230" x2="240" y2="240"/>
+      <line x1="220" y1="245" x2="200" y2="245"/>
+      <line x1="180" y1="245" x2="160" y2="245"/>
+      <line x1="140" y1="240" x2="120" y2="230"/>
+      <line x1="120" y1="210" x2="125" y2="190"/>
+      <line x1="125" y1="160" x2="130" y2="140"/>
+    </g>
+    <g transform="translate(200, 220)" filter="url(#kitShadow2)">
+      <rect x="-30" y="-20" width="60" height="70" rx="6" fill="#5588a8" stroke="#1a3a4a" stroke-width="1"/>
+      <circle cx="0" cy="10" r="18" fill="#333" stroke="#222" stroke-width="1"/>
+      <circle cx="0" cy="10" r="12" fill="#222"/>
+      <rect x="-8" y="50" width="16" height="15" rx="2" fill="#333" stroke="#222" stroke-width="0.5"/>
+    </g>
+    <g transform="translate(120, 180)" filter="url(#kitShadow2)">
+      <circle cx="0" cy="0" r="25" fill="#3a3a3a" stroke="#111" stroke-width="1"/>
+      <circle cx="0" cy="0" r="18" fill="#333" stroke="#222" stroke-width="0.5"/>
+      <circle cx="0" cy="0" r="8" fill="#111"/>
+    </g>
+    <g transform="translate(280, 180)" filter="url(#kitShadow2)">
+      <circle cx="0" cy="0" r="22" fill="#3a3a3a" stroke="#111" stroke-width="1"/>
+      <circle cx="0" cy="0" r="15" fill="#333" stroke="#222" stroke-width="0.5"/>
+      <circle cx="0" cy="0" r="7" fill="#111"/>
+    </g>
+    <g transform="translate(120, 280)" filter="url(#kitShadow2)">
+      <circle cx="0" cy="0" r="40" fill="#555" stroke="#444" stroke-width="1"/>
+      <circle cx="0" cy="0" r="30" fill="#444" stroke="#333" stroke-width="0.5"/>
+      <g stroke="#666" stroke-width="1.5">
+        <line x1="0" y1="-35" x2="0" y2="-25"/>
+        <line x1="0" y1="25" x2="0" y2="35"/>
+        <line x1="-35" y1="0" x2="-25" y2="0"/>
+        <line x1="25" y1="0" x2="35" y2="0"/>
+      </g>
+    </g>
+    <g transform="translate(280, 80)" filter="url(#kitShadow2)">
+      <circle cx="0" cy="0" r="30" fill="#555" stroke="#444" stroke-width="1"/>
+      <circle cx="0" cy="0" r="22" fill="#444" stroke="#333" stroke-width="0.5"/>
+      <circle cx="0" cy="0" r="12" fill="#222"/>
+    </g>
+    <g fill="#444" stroke="#333" stroke-width="0.5">
+      <rect x="105" y="115" width="10" height="10" rx="1"/>
+      <rect x="285" y="75" width="10" height="10" rx="1"/>
+      <rect x="285" y="235" width="10" height="10" rx="1"/>
+      <rect x="105" y="275" width="10" height="10" rx="1"/>
+    </g>
+  </g>
+  <text x="200" y="360" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#2a2a2a">GATES</text>
+  <text x="200" y="355" text-anchor="middle" font-size="14" fill="#666">Timing Chain Kit - Complete</text>
+  <text x="200" y="375" text-anchor="middle" font-size="12" fill="#888">Chain + Guides + Tensioner + Sprockets</text>
+</svg>
